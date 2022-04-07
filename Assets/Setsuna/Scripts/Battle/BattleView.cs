@@ -47,12 +47,19 @@ namespace Setsuna
         public IEnumerator Play()
         {
             var stop = onPlaySound(Resources.Load<AudioClip>("Sounds/battle"));
-            yield return new WaitForSeconds(waitTime);
+            var time = waitTime;
+            var current = 0f;
+            while (current < time)
+            {
+                current += Time.deltaTime;
+                yield return null;
+            }
+
             stop();
             var win = false;
             var counter = false;
-            var time = reflexTime;
-            var current = 0f;
+            time = reflexTime;
+            current = 0f;
             while (current < time)
             {
                 current += Time.deltaTime;

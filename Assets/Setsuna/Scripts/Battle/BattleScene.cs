@@ -26,6 +26,7 @@ namespace Setsuna
 
         protected override void Initialize()
         {
+            Application.targetFrameRate = 60;
             readyView.Initialize();
             battleView.Initialize();
             speaker.Initialize();
