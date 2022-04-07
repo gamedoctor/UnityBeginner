@@ -30,10 +30,12 @@ namespace Setsuna
         public IEnumerator OnApply(ISceneParameter parameter)
         {
             yield return Apply((T) parameter);
+            yield return In();
         }
 
         protected abstract void Initialize();
         protected abstract IEnumerator Apply(T parameter);
+        protected abstract IEnumerator In();
     }
 
     public interface ISceneParameter

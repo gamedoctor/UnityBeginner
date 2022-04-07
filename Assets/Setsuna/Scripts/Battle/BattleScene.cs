@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Setsuna.Presenter;
+using Setsuna.Value;
 using UnityEngine;
 
 namespace Setsuna
@@ -9,26 +11,39 @@ namespace Setsuna
         public class SceneParameter : ISceneParameter
         {
             public int SceneId => 1;
-            
-            // ここに必要なパラメータを追加する
+
+            public BattleCharacterVO BattleCharacter { get; }
 
             public SceneParameter()
             {
-                // ここに必要なパラメータの処理を書く
+                BattleCharacter = BattlePresenter.GetBattleCharacter(1);
             }
         }
 
+        [SerializeField] private ReadyView readyView;
+        [SerializeField] private BattleView battleView;
+        [SerializeField] private Speaker speaker;
+
         protected override void Initialize()
         {
-            // 初期化処理を書く
+            readyView.Initialize();
+            battleView.Initialize();
+            speaker.Initialize();
         }
 
         protected override IEnumerator Apply(SceneParameter parameter)
         {
-            // 反映処理を書く
-            yield return null;
+            yield return new Enumerators(
+                readyView.Apply(new ReadyView.Parameter(parameter.BattleCharacter.BattleStep)),
+                battleView.Apply(new BattleView.Parameter(parameter.BattleCharacter, clip => speaker.Play(clip, 0)))
+            );
+        }
+
+        protected override IEnumerator In()
+        {
+            yield return new WaitForSeconds(1f);
+            yield return readyView.In();
+            StartCoroutine(battleView.Play());
         }
     }
-
 }
-
