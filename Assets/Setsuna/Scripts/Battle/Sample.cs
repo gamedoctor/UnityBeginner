@@ -15,16 +15,16 @@ namespace Setsuna
             Cart donkey = new Cart("ドソキーユング", 5, 1, 1, 5);
             Cart kuppa = new Cart("クッパ", 5, 1, 2, 4);
             Cart kinopio = new Cart("キノピオ", 5, 5, 5, 1);
-            
-            // マリオと表示
-            Debug.Log(mario.GetName());
-            
-            // 以下２つの結果は何がはいるか
-            Debug.Log(yoshi.GetTotalStatus());
-            Debug.Log(donkey.GetTotalStatus());
+
+            // // マリオと表示
+            // Debug.Log(mario.GetName());
+            //
+            // // 以下２つの結果は何がはいるか
+            // Debug.Log(yoshi.GetTotalStatus());
+            // Debug.Log(donkey.GetTotalStatus());
 
             // カップ : カップを定義する
-            Cup cup = new Cup("きのこカップ");
+            Cup cup = new Cup("キノコカップ");
             cup.Entry(mario);
             cup.Entry(luigi);
             cup.Entry(yoshi);
@@ -33,7 +33,58 @@ namespace Setsuna
             cup.Entry(kuppa);
             cup.Entry(kinopio);
             
-            // レース : レースを定義する
+            // 繰り返し文
+            // while, for, foreach
+            // while=条件を満たしている場合、繰り返す
+            // while (条件式(bool)) true=真, false=偽
+            // while (true)
+            // {
+            //     // 無限ループ
+            // }
+            //
+            // while (false)
+            // {
+            //     // 一回も実行されない
+            // }
+
+            // for (初動; 条件式; ステップ実行)
+            // {
+            //     
+            // }
+            // ++ = インクリメント、+1する
+            // < = これは未満を意味する
+            // <= = これは以下を意味する
+            // for (int i = 0; i < 10; i = i + 1)
+            // {
+            // }
+            //
+            // // ちなみにこれは無限ループ
+            // for (; true;)
+            // {
+            //     
+            // }
+
+            // foreach(型 変数名 in 配列型のリスト)
+            // foreach (Cart cart in cup.GetEntries())
+            // {
+            //     Debug.Log(cart.GetName());
+            // }
+            //
+            // List<Cart> carts = cup.GetEntries();
+            // for (int i = 0; i < carts.Count; i++)
+            // {
+            //     Debug.Log(carts[i].GetName());
+            // }
+
+            // 課題:
+            // フラワーカップを定義しなさい
+            // 既に定義済みのマリオ、ルイージ、ピーチ、クッパは参加
+            // 今は定義のないヘイホー、デイジーを追加し
+            // foreachを使って
+            // ピーチ、デイジー、ヘイホー、マリオ、ルイージ、クッパ
+            // の順番にログを表示するように実装しなさい
+            
+            // ここにコードを書いていく
         }
     }
 
@@ -101,22 +152,60 @@ namespace Setsuna
     {
         public string name;
 
-        public List<Cart> entry;
+        // List型
+        // List型を説明する前に「配列」の説明
+        // 配列とは
+        // 複数の数値をまとめる変数
+        // int value1, value2, value3…
+        // int[] values = new int[3];
+        //   values[0], values[1], values[2]は取得できる
+        //   values[3]ってしようとするとエラーになる
+        // List型とは
+        //   List型は配列をパフォーマンスを犠牲にする代わりに使いやすくしたもの
+        //   array型 = 決まられた枠で動かすため、パフォーマンスが良い(速さなど)
+        //   List型 = arrayより重いかったりする　※パフォーマンスは全般を指すので速さだけではない
+        // ☆具体的に何が使いやすいか
+        // 配列は「後で長さを伸ばすのが難しい」
+        // List型は「簡単に長さをかえることができる」
+        // 長さをかえるというのは、 new int[3]; だと長さが3。
+        // new int[4]にするのは地味に大変
+        // この苦労をなくすことができるのがList型
+        // 型<ジェネリック型> 変数名;と記述する
+        // ジェネリック型は実際にリストにしたい変数の型を書く
+        public List<Cart> entries;
+
+        public List<Cart> GetEntries()
+        {
+            return entries;
+        }
 
         public void Entry(Cart cart)
         {
-            entry.Add(cart);
+            entries.Add(cart);
+
+            // これをもし配列 Cart[] はこうなる
+            // Cart[] carts = new Cart[0];
+            // Cart[] cache = new Cart[carts.Length];
+            // for (int i = 0; i < carts.Length; i++)
+            // {
+            //     cache[i] = carts[i];
+            // }
+            //
+            // carts = new Cart[carts.Length + 1];
+            // for (int i = 0; i < carts.Length; i++)
+            // {
+            //     carts[i] = i < cache.Length ? cache[i] : cart;
+            // }
         }
 
         public Cup(string name)
         {
             this.name = name;
-            entry = new List<Cart>();
+            entries = new List<Cart>();
         }
     }
 
     public class Race
     {
-        
     }
 }
