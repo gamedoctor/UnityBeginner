@@ -85,6 +85,27 @@ namespace Setsuna
             // の順番にログを表示するように実装しなさい
             
             // ここにコードを書いていく
+            //カップ定義
+            Cup Flowercup = new Cup("フラワーカップ");
+            
+            //キャラ追加
+            Cart heiho = new Cart("ヘイホー", 10, 10, 10, 10);
+            Cart daizy = new Cart("デイジー", 1, 1, 1, 1);
+
+            //参加者追加
+            Flowercup.Entry(peach);
+            Flowercup.Entry(daizy);
+            Flowercup.Entry(heiho);
+            Flowercup.Entry(mario);
+            Flowercup.Entry(luigi);
+            Flowercup.Entry(kuppa);
+
+            foreach(Cart cart in Flowercup.GetEntries())
+            {
+                Debug.Log(cart.GetName());
+            }
+
+
         }
     }
 
