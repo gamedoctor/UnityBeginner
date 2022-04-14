@@ -85,28 +85,27 @@ namespace Setsuna
             // の順番にログを表示するように実装しなさい
 
             // ここにコードを書いていく
-        }
-        public void Start();
+
 
             //カートの定義
             Cart heiho = new Cart("ヘイホー", 2, 3, 4, 1);
             Cart daisy = new Cart("デイジー", 3, 3, 3, 2);
 
             //カップの定義
-            Cup cup = new Cup("フラワーカップ");
-            cup.Entry(peach);
-            cup.entry(daisy);
-            cup.Entry(heiho);
-            cup.Entry(mario);
-            cup.Entry(luigi);
-            cup.Entry(kuppa);
+            Cup Flowercup = new Cup("フラワーカップ");
+            Flowercup.Entry(peach);
+            Flowercup.Entry(daisy);
+            Flowercup.Entry(heiho);
+            Flowercup.Entry(mario);
+            Flowercup.Entry(luigi);
+            Flowercup.Entry(kuppa);
 
             //ログを表示する
-            foreach (Cart cart in cup.GetEntries())
+            foreach (Cart cart in Flowercup.GetEntries())
             {
                 Debug.Log(cart.GetName());
             }
-            
+        }
             
     }
 
