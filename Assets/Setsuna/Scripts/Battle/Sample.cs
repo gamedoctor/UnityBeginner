@@ -32,7 +32,7 @@ namespace Setsuna
             cup.Entry(donkey);
             cup.Entry(kuppa);
             cup.Entry(kinopio);
-            
+
             // 繰り返し文
             // while, for, foreach
             // while=条件を満たしている場合、繰り返す
@@ -83,9 +83,31 @@ namespace Setsuna
             // foreachを使って
             // ピーチ、デイジー、ヘイホー、マリオ、ルイージ、クッパ
             // の順番にログを表示するように実装しなさい
-            
+
             // ここにコードを書いていく
         }
+        public void Start();
+
+            //カートの定義
+            Cart heiho = new Cart("ヘイホー", 2, 3, 4, 1);
+            Cart daisy = new Cart("デイジー", 3, 3, 3, 2);
+
+            //カップの定義
+            Cup cup = new Cup("フラワーカップ");
+            cup.Entry(peach);
+            cup.entry(daisy);
+            cup.Entry(heiho);
+            cup.Entry(mario);
+            cup.Entry(luigi);
+            cup.Entry(kuppa);
+
+            //ログを表示する
+            foreach (Cart cart in cup.GetEntries())
+            {
+                Debug.Log(cart.GetName());
+            }
+            
+            
     }
 
     public class Cart
