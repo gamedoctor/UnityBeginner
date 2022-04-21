@@ -49,7 +49,100 @@ namespace Setsuna
             // 1位10点、2位8点、3位7点、4位5点としてカップの1位～3位を表示させよ
             //
             // ソートについてはLinq機能のOrderByを使うこと。降順のできるので使い方は調べること
+
+
+
+            //キャラクターの定義
+            Character mario = new Character("マリオ", 2, 2, 2, 2);
+            Character luigi = new Character("ルイージ", 2, 2, 2, 1);
+            Character wario = new Character("ワリオ", 2, 2, 1, 3);
+            Character koopa = new Character("クッパ", 3, 1, 1, 3);
+            Character daisy = new Character("デイジー", 2, 3, 3, 1);
+            Character rosetta = new Character("ロゼッタ", 3, 3, 3, 2);
+            Character kinopio = new Character("キノピオ", 3, 4, 3, 1);
+            Character yoshi = new Character("ヨッシー", 3, 4, 3, 2);
+            Character catherine = new Character("キャサリン", 2, 2, 2, 3);
+            Character donkey = new Character("ドソキーユング", 1, 1, 1, 4);
+
+
+            //カップの定義
+            Cup Starcup = new Cup("スターカップ");
+            Starcup.entry(mario);
+            Starcup.entry(luigi);
+            Starcup.entry(wario);
+            Starcup.entry(koopa);
+            Starcup.entry(daisy);
+            Starcup.entry(rosetta);
+            Starcup.entry(kinopio);
+            Starcup.entry(yoshi);
+            Starcup.entry(catherine);
+            Starcup.entry(donkey);
+
+
         }
-    }
+
+        //キャラクターのクラスを作る
+        public class Character
+
+        
+        //カートのクラスを作る
+        public class Cart : machine
+        {
+
+        }
+
+        //バイクのクラスを作る
+        public class Bike : machine
+        {
+
+        }
+
+        //マシンのクラスを作る
+        public class machine
+        {
+            /// <summary>
+            /// マシンの名前
+            /// </summary>
+            public string name;
+
+            public int speed;
+
+            public int grip;
+
+            public int accelerator;
+
+            public int weight;
+        }
+
+        //カップのクラスを作る
+        public class Cup
+        {
+            public int firstrace;
+
+            public int secondrace;
+
+            public int thirdrace;
+
+            public int lastrace;
+        }
+
+
+        //レースのカップを作る
+        public class Starcup
+        {
+            firstrace = ("マリオサーキット")
+
+            secondrace = ("ヨッシーバレー")
+
+            thirdrace = ("おばけサーキット")
+
+            lastrace = ("レインボーロード")
+        }
+
+        public class result
+        {
+        
+        }
+
 
 }
