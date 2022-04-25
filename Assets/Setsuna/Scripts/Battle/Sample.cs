@@ -15,6 +15,11 @@ namespace Setsuna
             // レース2: ヨッシーバレー
             // レース3: おばけサーキット
             // レース4: レインボーロード
+            //まずカップクラス（四つのコース）を器として作る
+            //カップクラスをインスタンス生成する
+            //四つのコースがあるので器を作る必要がある
+            //コースクラスを四つのコースで継承する
+            //アドコースでコースを追加する処理
 
             var cup = new Cup {name = "スターカップ"};
 
@@ -22,12 +27,16 @@ namespace Setsuna
             var course2 = new Course2 {name = "ヨッシーバレー"};
             var course3 = new Course3 {name = "おばけサーキット"};
             var course4 = new Course4 {name = "レインボーロード"};
+            
 
+            //アドコースで追加
             cup.AddCourse(course1);
             cup.AddCourse(course2);
             cup.AddCourse(course3);
             cup.AddCourse(course4);
 
+
+            //マシンベースが必要→そこから継承する
             var machine1 = new Bike("マリオ", 2, 2, 2, 2);
             var machine2 = new Bike("ルイージ", 2, 2, 2, 1);
             var machine3 = new Bike("ワリオ", 2, 2, 1, 3);
@@ -39,6 +48,13 @@ namespace Setsuna
             var machine9 = new Cart("キャサリン", 2, 2, 2, 3);
             var machine10 = new Cart("ドソキーユング", 1, 1, 1, 4);
 
+            //コンストラクタ = 初期化
+            //マシンベースをつくり、ベースを使ってその情報を参照する
+            //カッコがついてるかどうかはコンストラクタを経由してるかしてないかの違い
+
+            //var = ヴァリアント
+            //たぶんこれはアレなんやろうなぁ…と察してくれる型
+
             cup.AddMachine(machine1);
             cup.AddMachine(machine2);
             cup.AddMachine(machine3);
@@ -49,6 +65,8 @@ namespace Setsuna
             cup.AddMachine(machine8);
             cup.AddMachine(machine9);
             cup.AddMachine(machine10);
+
+            //アドマシンでカート・バイクを追加する時に、引数マシンベースとして扱うことができる（マシンベースを継承しているため）
 
 
             // レースには以下のキャラクターが参加する、パラメータは左から「速度/グリップ/加速/重さ」
@@ -93,13 +111,19 @@ namespace Setsuna
                 Debug.Log($"{step}位, {machineResult.machine.name} score:{machineResult.score}");
                 step++;
             }
+
+            //テイク3はデータを先頭から三つ参照する
         }
     }
+
+
+    
 
     public class Cup
     {
         public string name;
 
+        //以下のmachinesを弄れば、追加される関数が変わる
         public List<MachineBase> machines = new List<MachineBase>();
         public List<Course> courses = new List<Course>();
 
@@ -120,6 +144,8 @@ namespace Setsuna
                 .Select(x => new RaceResult {results = x})
                 .ToArray();
 
+            //CupMachineResultはマシンがどの
+            //ディクショナリーは好きな数字を入れられる
             var cupResult = new CupResult();
             cupResult.results = machines.Select(x => new CupMachineResult {machine = x}).ToArray();
             var scoreMap = new Dictionary<int, int> {{0, 10}, {1, 8}, {2, 7}, {3, 5}};
@@ -132,6 +158,8 @@ namespace Setsuna
                     target.score += scoreMap[i];
                 }
             }
+            //ファーストは条件に合致したデータを一個だけ持ってくる
+            //
 
             cupResult.results = cupResult.results.OrderByDescending(x => x.score).ToArray();
 
@@ -226,15 +254,31 @@ namespace Setsuna
     }
 
 
+
+    //コースのクラス
+    //GetCourseResult ＝それぞれのマシンがどういう結果を返すのか
+    //結果クラスというのを別で作ってて、コースの結果
+    //コースリザルトは、コースの結果用のクラス
+    //マシンがそれぞれどういったスコアを出したか、というデータを持ってるのがコースリザルト
+    //GetScoreは数値しか入っていない（どのマシンがそういったパフォーマンスを出したか）
+    //GetCourseResult
     public class Course
     {
         public virtual CourseResult[] GetCourseResult(MachineBase[] machines)
         {
             return machines
+                // ↑ Machinebase[]
                 .Select(x => new CourseResult {machine = x, score = GetScore(x)})
+                //セレクトは変換
+                // ↑IEnumerable<CourseResult> => 配列と同等 CourseResult[] と一旦考えておｋ
+                //.Select(x => ぬぷ竜　と書けば、ぬぷ竜さんに変換される
                 .OrderByDescending(x => x.score)
+                // ↑IEnumerable<CourseResult>　降順に並べている処理
                 .ToArray();
+                //トゥアレイは配列に変換
         }
+
+        //.Selectは、new CourseResultという新しいクラスに変換　配列一つ一つを変換している　無名関数を用いている
 
         public virtual int GetScore(MachineBase machine)
         {
@@ -266,6 +310,7 @@ namespace Setsuna
         }
     }
 
+    //カートとバイクの継承元
     public class MachineBase
     {
         public string name;
