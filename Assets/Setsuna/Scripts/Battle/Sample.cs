@@ -58,37 +58,22 @@ namespace Setsuna
             // パターン1とパターン2それぞれで表示すること
 
             // パターン1
-            ConsoleResult(character1, new[] {weapon1, weapon2, weapon3, weapon4}
-                .Select(x => new WeaponSortResult(character1, x, x.GetWeaponValue(character1)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character2, new[] {weapon1, weapon2, weapon3, weapon4}
-                .Select(x => new WeaponSortResult(character2, x, x.GetWeaponValue(character2)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character3, new[] {weapon1, weapon2, weapon3, weapon4}
-                .Select(x => new WeaponSortResult(character3, x, x.GetWeaponValue(character3)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character4, new[] {weapon1, weapon2, weapon3, weapon4}
-                .Select(x => new WeaponSortResult(character4, x, x.GetWeaponValue(character4)))
-                .OrderByDescending(x => x.value).ToArray());
-            
+            ConsoleResult(character1, new[] {weapon1, weapon2, weapon3, weapon4});
+            ConsoleResult(character2, new[] {weapon1, weapon2, weapon3, weapon4});
+            ConsoleResult(character3, new[] {weapon1, weapon2, weapon3, weapon4});
+            ConsoleResult(character4, new[] {weapon1, weapon2, weapon3, weapon4});
+
             // パターン2
-            ConsoleResult(character1, new[] {weapon5, weapon6, weapon7, weapon8}
-                .Select(x => new WeaponSortResult(character1, x, x.GetWeaponValue(character1)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character2, new[] {weapon5, weapon6, weapon7, weapon8}
-                .Select(x => new WeaponSortResult(character2, x, x.GetWeaponValue(character2)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character3, new[] {weapon5, weapon6, weapon7, weapon8}
-                .Select(x => new WeaponSortResult(character3, x, x.GetWeaponValue(character3)))
-                .OrderByDescending(x => x.value).ToArray());
-            
-            ConsoleResult(character4, new[] {weapon5, weapon6, weapon7, weapon8}
-                .Select(x => new WeaponSortResult(character4, x, x.GetWeaponValue(character4)))
+            ConsoleResult(character1, new[] {weapon5, weapon6, weapon7, weapon8});
+            ConsoleResult(character2, new[] {weapon5, weapon6, weapon7, weapon8});
+            ConsoleResult(character3, new[] {weapon5, weapon6, weapon7, weapon8});
+            ConsoleResult(character4, new[] {weapon5, weapon6, weapon7, weapon8});
+        }
+
+        private void ConsoleResult(Character character, Weapon[] weapons)
+        {
+            ConsoleResult(character, weapons
+                .Select(x => new WeaponSortResult(character, x, x.GetWeaponValue(character)))
                 .OrderByDescending(x => x.value).ToArray());
         }
 
