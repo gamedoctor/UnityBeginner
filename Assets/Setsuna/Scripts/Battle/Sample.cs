@@ -46,8 +46,11 @@ namespace Setsuna
             pokelib.Add(husigisou);
             pokelib.Add(husigibana);
 
-            HpDescendSort(pokelib.pokemons);
-
+            
+            Sort sort = new Sort();
+            sort.HpDescendSort(pokelib.pokemons);
+            sort.ExAtkDescendSort(pokelib.pokemons);
+            sort.SpdAscendSort(pokelib.pokemons);
         }
 
         /// <summary>
@@ -85,55 +88,52 @@ namespace Setsuna
             }
         }
 
-        //テスト用にソートベースの外で実験
-        public void HpDescendSort(List<PokemonBase> pokemonList)
+        public class Sort
         {
-            //問題の個所、何故ダメなのかよく分からない
-            pokemonList = pokemonList.OrderByDescending(x=> x.hp);
-
-            foreach (var item in pokemonList)
-            {
-                Debug.Log($"{item.name}  {item.hp}  {item.atk}  {item.def}  {item.exatk}  {item.exdef}  {item.spd}");
-            }
-        }
-
-        /// <summary>
-        /// ポケモンのステータスをソートする関数を持つクラス
-        /// </summary>
-        public class SortBase
-        {
+            
             /// <summary>
             /// HPを降順にソート
             /// </summary>
+            public void HpDescendSort(List<PokemonBase> pokemonList)
+            {
+                //問題の個所、何故ダメなのかよく分からない
+                pokemonList = pokemonList.OrderByDescending(x=> x.hp).ToList<PokemonBase>();
 
+                foreach (var item in pokemonList)
+                {
+                    Debug.Log($"{item.name} <color=red>{item.hp}</color>/{item.atk}/{item.def}/{item.exatk}/{item.exdef}/{item.spd}");
+                }
+            }
 
             /// <summary>
             /// 特攻を降順にソート
             /// </summary>
-            public void ExAtkDescendSort()
+            public void ExAtkDescendSort(List<PokemonBase> pokemonList)
             {
-                // pokelib = pokelib.OrderByDescending(x=> x.exatk);
+                pokemonList = pokemonList.OrderByDescending(x=> x.exatk).ToList<PokemonBase>();
 
-                // foreach (var item in pokemonList.pokemons)
-                // {
-                    
-                // }
+                foreach (var item in pokemonList)
+                {
+                    Debug.Log($"{item.name}  {item.hp}/{item.atk}/{item.def}/<color=red>{item.exatk}</color>/{item.exdef}/{item.spd}");
+    
+                }
             }
 
             /// <summary>
             /// すばやさを昇順にソート
             /// </summary>
-            public void SpdAscendSort()
+            public void SpdAscendSort(List<PokemonBase> pokemonList)
             {
-                // pokemonList.pokemons =  pokemonList.pokemons.OrderBy(x=> x.spd);
-                // foreach (var item in pokemonList.pokemons)
-                // {
-                    
-                // }
+                pokemonList = pokemonList.OrderBy(x=> x.spd).ToList<PokemonBase>();
+                foreach (var item in pokemonList)
+                {
+                    Debug.Log($"{item.name}  {item.hp}/{item.atk}/{item.def}/{item.exatk}/{item.exdef}/<color=red>{item.spd}</color>");
+
+                }
             }
 
 
-
         }
+
     }
 }
