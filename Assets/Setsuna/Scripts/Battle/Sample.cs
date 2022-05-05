@@ -45,13 +45,46 @@ namespace Setsuna
             pokelib.Add(husigidane);
             pokelib.Add(husigisou);
             pokelib.Add(husigibana);
-
             
+
+
             Sort sort = new Sort();
-            sort.HpDescendSort(pokelib.pokemons);
-            sort.ExAtkDescendSort(pokelib.pokemons);
-            sort.SpdAscendSort(pokelib.pokemons);
+            sort.StatusSort(pokelib.pokemons, StatusTag.Hp, false, (pokemonlist)=>
+            {
+                foreach (var item in pokemonlist)
+                {
+                    Debug.Log($"{item.hp} <color=red>{item.hp}</color>/{item.atk}/{item.def}/{item.exatk}/{item.exdef}/{item.spd}");
+                }                
+            });
+            sort.StatusSort(pokelib.pokemons, StatusTag.exatk, false, (pokemonlist)=>
+            {
+                foreach (var item in pokemonlist)
+                {
+                    Debug.Log($"{item.hp} {item.hp}/{item.atk}/{item.def}/<color=red>{item.exatk}</color>/{item.exdef}/{item.spd}");
+                }
+            });
+            sort.StatusSort(pokelib.pokemons, StatusTag.spd, true, (pokemonlist)=>
+            {
+
+                foreach (var item in pokemonlist)
+                {
+                    Debug.Log($"{item.hp} {item.hp}/{item.atk}/{item.def}/{item.exatk}/{item.exdef}/<color=red>{item.spd}</color>");
+                }
+
+            });
         }
+
+        public enum StatusTag
+        {
+            Hp,
+            atk,
+            def,
+            exatk,
+            exdef,
+            spd
+        }
+
+        
 
         /// <summary>
         /// ポケモンの情報を持つクラス
@@ -67,7 +100,7 @@ namespace Setsuna
             public int spd;
 
             public PokemonBase(string name ,int hp, int atk, int def, int exatk, int exdef, int spd)
-            {
+            { 
                 this.name = name;
                 this.hp = hp;
                 this.atk = atk;
@@ -90,6 +123,86 @@ namespace Setsuna
 
         public class Sort
         {
+
+            /// <summary>
+            /// ステータスの数値を見て、ソートする
+            /// </summary>
+            /// <param name="pokemonList"></param>
+            /// <param name="statusType">ソートの基準となるもの</param>
+            /// <param name="aaaa">昇順ならtrue、降順ならfalse</param>
+            public void StatusSort(List<PokemonBase> pokemonList,StatusTag statusType, bool aaaa, Action<List<PokemonBase>> action)
+            {
+                switch (statusType)
+                {
+                    case StatusTag.Hp:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.hp).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.hp).ToList<PokemonBase>();
+                    }
+
+                    break;
+                    case StatusTag.atk:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.atk).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.atk).ToList<PokemonBase>();
+                    }
+                    break;
+                    case StatusTag.def:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.def).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.def).ToList<PokemonBase>();
+                    }                    
+                    break;
+                    case StatusTag.exatk:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.exatk).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.exatk).ToList<PokemonBase>();
+                    }                    
+                    break;
+                    case StatusTag.exdef:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.exdef).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.exdef).ToList<PokemonBase>();
+                    }                    
+                    break;
+                    case StatusTag.spd:
+                    if (aaaa)
+                    {
+                        pokemonList = pokemonList.OrderBy(x=> x.spd).ToList<PokemonBase>();
+                    }
+                    else
+                    {
+                        pokemonList = pokemonList.OrderByDescending(x=> x.spd).ToList<PokemonBase>();
+                    }                    
+                    break;
+
+                }
+
+                action(pokemonList);
+                //デバッグログは無名関数で書けば何とかなりそう
+                
+
+            }
             
             /// <summary>
             /// HPを降順にソート
