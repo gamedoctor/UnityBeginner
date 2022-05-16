@@ -46,8 +46,6 @@ namespace Setsuna
             pokelib.Add(husigisou);
             pokelib.Add(husigibana);
             
-
-
             Sort sort = new Sort();
             sort.StatusSort(pokelib.pokemons, StatusTag.Hp, false, (pokemonlist)=>
             {
@@ -208,8 +206,7 @@ namespace Setsuna
             /// HPを降順にソート
             /// </summary>
             public void HpDescendSort(List<PokemonBase> pokemonList)
-            {
-                //問題の個所、何故ダメなのかよく分からない
+            {               
                 pokemonList = pokemonList.OrderByDescending(x=> x.hp).ToList<PokemonBase>();
 
                 foreach (var item in pokemonList)
