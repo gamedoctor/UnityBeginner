@@ -32,15 +32,25 @@ namespace Setsuna
 
             List<WeaponBase> weaponlist = new List<WeaponBase>();
 
-            Sword bronssword = new Sword(name = "どうのつるぎ");
+            Sword bronzesword = new Sword(name = "どうのつるぎ");
             Sword ironsword = new Sword(name = "はがねのつるぎ");
             Sword swordofROTO = new Sword(name = "ロトのつるぎ");
-            Axe bronsaxe = new Axe(name = "どうのおの");
+            Axe bronzeaxe = new Axe(name = "どうのおの");
             Axe ironaxe = new Axe(name = "はがねのおの");
             Axe axeofDEVIL = new Axe(name = "まじんのおの");
             Spear bamboospear = new Spear(name = "たけやり");
             Spear ironspear = new Spear(name = "はがねのやり");
             Spear spearofLoneMetalSlime = new Spear(name = "はぐれメタルのやり");
+
+            weaponlist.Add(bronzesword);
+            weaponlist.Add(ironsword);
+            weaponlist.Add(swordofROTO);
+            weaponlist.Add(bronzeaxe);
+            weaponlist.Add(ironaxe);
+            weaponlist.Add(axeofDEVIL);
+            weaponlist.Add(bamboospear);
+            weaponlist.Add(ironspear);
+            weaponlist.Add(spearofLoneMetalSlime);
 
         }
 
@@ -68,6 +78,12 @@ namespace Setsuna
         public class Spear : WeaponBase
         {
             public Spear(string name) :base (name) {}
+        }
+
+        public class Name
+        {
+            int aaaa;
+            
         }
 
 
