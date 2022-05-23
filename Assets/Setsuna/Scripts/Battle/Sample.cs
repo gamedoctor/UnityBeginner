@@ -119,7 +119,6 @@ namespace Setsuna
             //ソートしたい武器をselecttypeで抽出し、リスト化
             weapon = weapon.Where(x =>x.type == selecttype).ToList();
  
-
             for (int i = 0; i < weapon.Count; i++)
             {
                 if (weapon[i].canbuy == true)
@@ -144,11 +143,8 @@ namespace Setsuna
 
                 case Type.spear:
                 Debug.Log($"種類「槍」　販売品  {A}非売品　{B}");
-                break;    
+                break;
             }
-            
         }
-
-
     }
 }
