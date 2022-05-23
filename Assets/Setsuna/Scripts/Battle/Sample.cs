@@ -114,22 +114,17 @@ namespace Setsuna
         {
 
             List<WeaponBase> weapon = weaponlist;
+            
             string A = "";//販売品を表示するための変数
             string B = "";//非売品を(ry
             //ソートしたい武器をselecttypeで抽出し、リスト化
             weapon = weapon.Where(x =>x.type == selecttype).ToList();
- 
-            for (int i = 0; i < weapon.Count; i++)
-            {
-                if (weapon[i].canbuy == true)
-                {
-                    A += weapon[i].name + ", ";
-                }
-                else
-                {
-                    B += weapon[i].name + ", ";
-                }
-            }
+            var canbuylist = weapon.Where(x => x.canbuy == true).Select(X =>X.name).ToArray();
+            var cannotbuylist = weapon.Where(x => x.canbuy != true).Select(x => x.name).ToArray();
+
+            A = String.Join(",",canbuylist);
+            B = String.Join(",",cannotbuylist);
+            
 
             switch (selecttype)
             {
