@@ -52,9 +52,9 @@ namespace Setsuna
             weaponlist.Add(ironspear);
             weaponlist.Add(spearofLoneMetalSlime);
 
-            aaaa(weaponlist, Type.sword);
-            aaaa(weaponlist, Type.axe);
-            aaaa(weaponlist, Type.spear);
+            sortweapon(weaponlist, Type.sword);
+            sortweapon(weaponlist, Type.axe);
+            sortweapon(weaponlist, Type.spear);
 
         }
 
@@ -110,7 +110,7 @@ namespace Setsuna
         /// </summary>
         /// <param name="weaponlist">引数で渡された武器リスト</param>
         /// <param name="selecttype">今回ソートする武器の種類</param>
-        public void aaaa(List<WeaponBase> weaponlist, Type selecttype)
+        public void sortweapon(List<WeaponBase> weaponlist, Type selecttype)
         {
 
             List<WeaponBase> weapon = weaponlist;
@@ -134,17 +134,18 @@ namespace Setsuna
             switch (selecttype)
             {
                 case Type.sword:
-                Debug.Log($"種類「剣」　販売品　{A}非売品　{B}");
+                Debug.Log($"種類「剣」　販売品　<color=green>{A}</color>非売品　<color=red>{B}</color>");
                 break;
 
                 case Type.axe:
-                Debug.Log($"種類「斧」　販売品  {A}非売品　{B}");
+                Debug.Log($"種類「斧」　販売品  <color=green>{A}</color>非売品　<color=red>{B}</color>");
                 break;
 
                 case Type.spear:
-                Debug.Log($"種類「槍」　販売品  {A}非売品　{B}");
+                Debug.Log($"種類「槍」　販売品  <color=green>{A}</color>非売品　<color=red>{B}</color>");
                 break;
             }
+
         }
     }
 }
