@@ -9,84 +9,40 @@ namespace Setsuna
     {
         public void Start()
         {
-            // 課題:
-            // キャラクターは以下が存在している
-            var characters = new List<Character>
-            {
-                new Character {name = "セシル", level = 1},
-                new Character {name = "バッツ", level = 3},
-                new Character {name = "ティナ", level = 2},
-            };
-
-            // アイテムは以下が存在している
-            var items = new List<Item>
-            {
-                new Item {id = 1, name = "眠りの剣", type = 1, value = 10},
-                new Item {id = 2, name = "伝説の剣", type = 1, value = 11},
-                new Item {id = 3, name = "古代の剣", type = 1, value = 12},
-                new Item {id = 4, name = "珊瑚の剣", type = 1, value = 13},
-                new Item {id = 5, name = "斬鉄剣", type = 1, value = 14},
-                new Item {id = 6, name = "英雄の盾", type = 2, value = 10},
-                new Item {id = 7, name = "源氏の盾", type = 2, value = 11},
-            };
-
-            // それぞれのタイプ毎にキャラに装備を行う
-            // レベルが低い順にvalueが高いものを装備させよ
-            // 新規で変数を追加して実装することは禁止、クラスに手を加えるのも禁止
-
-
-            // --------------------------------------------------------------------------------------
-            // 以下は触ってはいけない　※出力結果にバグがあれば触ってください
-            // --------------------------------------------------------------------------------------
-
-            // 以下出力用
-            // 期待値
-            // --------------------------
-            // セシル Lv.1 武器: 斬鉄剣, 防具: 源氏の盾
-            // バッツ Lv.3 武器: 古代の剣, 防具: なし
-            // ティナ Lv.2 武器: 珊瑚の剣, 防具: 英雄の盾
-            foreach (var character in characters)
-            {
-                var item1 = items.FirstOrDefault(v => v.id == character.equipmentType1);
-                var item2 = items.FirstOrDefault(v => v.id == character.equipmentType2);
-                var label1 = item1 != null ? item1.name : "なし";
-                var label2 = item2 != null ? item2.name : "なし";
-                Debug.Log($"{character.name} Lv.{character.level} 武器: {label1}, 防具: {label2}");
-            }
-
-            // 以下出力用
-            // 期待値
-            // --------------------------
-            // 眠りの剣 値: 10
-            // 伝説の剣 値: 11
-            // 古代の剣 値: 12 バッツが装備中
-            // 珊瑚の剣 値: 13 ティナが装備中
-            // 斬鉄剣 値: 14 セシルが装備中
-            // 英雄の盾 値: 10 ティナが装備中
-            // 源氏の盾 値: 11 セシルが装備中
-            foreach (var item in items)
-            {
-                var character = characters
-                    .FirstOrDefault(v => v.equipmentType1 == item.id || v.equipmentType2 == item.id);
-                var label = character != null ? $"{character.name}が装備中" : "";
-                Debug.Log($"{item.name} 値: {item.value} {label}");
-            }
+            // 課題.1
+            // クラス名 Character を作成する
+            // 要素は string型変数 name int型変数 lv を持つ
+            // 以下に答えを記載
+            //-------------------------------------------------------------------------------
+            
+            //-------------------------------------------------------------------------------
+            // 課題.2
+            // List型変数 characters を作る
+            // 配列はこの時点ではなし
+            // 以下に答えを記載
+            //-------------------------------------------------------------------------------
+            
+            //-------------------------------------------------------------------------------
+            // 課題.3
+            // Characterを5人作成し、List型変数 characters に追加する
+            // データは以下
+            // アイク Lv.10, マルス Lv.15, ロイ Lv.5, エリウッド Lv.1, エフラム Lv.7, リン Lv12
+            // 以下に答えを記載
+            //-------------------------------------------------------------------------------
+            
+            //-------------------------------------------------------------------------------
+            // 課題.4
+            // Debug.Log でキャラの情報を表示させる
+            // 以下のようなルールで表示すること
+            // 例) アイク Lv.5の場合は以下
+            // アイク ★★★★★☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+            // Lvの数だけ★で埋める、レベルは最大20として足りていない部分は☆で埋めること
+            // 表示する場合、キャラクターのレベルが高い順で表示させること
+            // 以下に答えを記載
+            //-------------------------------------------------------------------------------
         }
+        
+        // 以下にクラスを記載する
     }
 
-    public class Character
-    {
-        public string name;
-        public int level;
-        public int equipmentType1;
-        public int equipmentType2;
-    }
-
-    public class Item
-    {
-        public int id;
-        public string name;
-        public int type;
-        public int value;
-    }
 }
