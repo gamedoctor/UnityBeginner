@@ -14,14 +14,16 @@ namespace Setsuna
             // 要素は string型変数 name int型変数 lv を持つ
             // 以下に答えを記載
             //-------------------------------------------------------------------------------
-            
+
+
             //-------------------------------------------------------------------------------
             // 課題.2
             // List型変数 characters を作る
             // 配列はこの時点ではなし
             // 以下に答えを記載
             //-------------------------------------------------------------------------------
-            
+            var characters = new List<Character>();
+
             //-------------------------------------------------------------------------------
             // 課題.3
             // Characterを5人作成し、List型変数 characters に追加する
@@ -29,7 +31,13 @@ namespace Setsuna
             // アイク Lv.10, マルス Lv.15, ロイ Lv.5, エリウッド Lv.1, エフラム Lv.7, リン Lv12
             // 以下に答えを記載
             //-------------------------------------------------------------------------------
-            
+            characters.Add(new Character {name = "アイク", lv = 10});
+            characters.Add(new Character {name = "マルス", lv = 15});
+            characters.Add(new Character {name = "ロイ", lv = 5});
+            characters.Add(new Character {name = "エリウッド", lv = 1});
+            characters.Add(new Character {name = "エフラム", lv = 7});
+            characters.Add(new Character {name = "リン", lv = 12});
+
             //-------------------------------------------------------------------------------
             // 課題.4
             // Debug.Log でキャラの情報を表示させる
@@ -40,9 +48,20 @@ namespace Setsuna
             // 表示する場合、キャラクターのレベルが高い順で表示させること
             // 以下に答えを記載
             //-------------------------------------------------------------------------------
+            var results = characters
+                .OrderByDescending(v => v.lv)
+                .Select(v => $"{v.name} " + string.Join("", new int[20].Select((_, i) => v.lv > i ? "★" : "☆")));
+            foreach (var result in results)
+            {
+                Debug.Log(result);
+            }
         }
-        
-        // 以下にクラスを記載する
-    }
 
+        // 以下にクラスを記載する
+        public class Character
+        {
+            public string name;
+            public int lv;
+        }
+    }
 }
