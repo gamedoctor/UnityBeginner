@@ -25,7 +25,7 @@ namespace Setsuna
                 new Item {id = 2, name = "伝説の剣", type = 1, value = 11},
                 new Item {id = 3, name = "古代の剣", type = 1, value = 12},
                 new Item {id = 4, name = "珊瑚の剣", type = 1, value = 13},
-                new Item {id = 5, name = "斬鉄剣", type = 1, value = 14},
+                new Item {id = 5, name = "斬鉄剣",   type = 1, value = 14},
                 new Item {id = 6, name = "英雄の盾", type = 2, value = 10},
                 new Item {id = 7, name = "源氏の盾", type = 2, value = 11},
             };
@@ -34,6 +34,27 @@ namespace Setsuna
             // レベルが低い順にvalueが高いものを装備させよ
             // 新規で変数を追加して実装することは禁止、クラスに手を加えるのも禁止
 
+            // キャラ達の装備品にアイテムのIDが一致しているか
+            // 無かったらそのまま代入でおｋ
+            // 有ったらどうすればいいのかが分からん
+            //　
+            characters = characters.OrderBy(x => x.level).ToList();
+            //思考用の一時変数
+            for (int i = 0; i < characters.Count; i++)
+            {
+                characters[i].equipmentType1 =      
+                items.Where(x => x.type == 1 && !characters.Any(X => X.equipmentType1 == x.id))
+                .OrderByDescending(x => x.value)    
+                .Select(x => x.id)                  
+                .FirstOrDefault();                  
+
+                characters[i].equipmentType2 =      //キャラの装備2に
+                items.Where(x => x.type == 2 && !characters.Any(X => X.equipmentType2 == x.id))       //アイテムのタイプ[2]でソート
+                .OrderByDescending(x => x.value)    //valueの降順で並べ替え
+                .Select(x => x.id)                  //アイテムのIDのみの配列に書き換え
+                .FirstOrDefault();                  //先頭の配列を取得する
+            }
+            
 
             // --------------------------------------------------------------------------------------
             // 以下は触ってはいけない　※出力結果にバグがあれば触ってください
@@ -73,6 +94,8 @@ namespace Setsuna
             }
         }
     }
+
+
 
     public class Character
     {
