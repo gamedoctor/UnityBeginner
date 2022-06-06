@@ -37,7 +37,7 @@ namespace Sample
             // ヒント: 文字列内に特定の文字が含まれているかをチェックする処理が存在している
             // ------------------------------------------------------------------------------
             
-            Item[] items  = new Item[3];
+            Item[] items = new Item[3];
 
             items[0] = Item1;
             items[1] = Item2;
@@ -63,6 +63,8 @@ namespace Sample
             //配列をfor文で全部回すのであれば、【int i = 0】で、条件が【i < "配列".Length】未満で回すこと
             //Length = 長さ
 
+            Debug.Log("---------------------------------------------------------------");
+
             // ------------------------------------------------------------------------------
             // 問.4
             // 問.2で作成したデータそれぞれに名前の末尾に「改」をつけて値を1.5倍にした
@@ -70,6 +72,49 @@ namespace Sample
             // ヒント: foreachを使う場合、配列データの長さが変わるとエラーになる
             // ヒント: クラスを複製するという機能は原則存在しないため、自前で実装する必要がある
             // ------------------------------------------------------------------------------
+
+            //Item Itemkai1 = Item1.Clone();
+            //Item Itemkai2 = Item2.Clone();
+            //Item Itemkai3 = Item3.Clone();
+
+            Item[] itemkais = new Item[3];
+
+            itemkais[0] = Item1.Clone();
+            itemkais[1] = Item2.Clone();
+            itemkais[2] = Item3.Clone();
+
+            //関数を呼び出す時は()をつける
+            //関数は引数がゼロでも()が必要
+
+            foreach (var Item in itemkais)
+            {
+                Item.name += "改";
+                float num = Item.value;
+                num *= 1.5f;
+                Item.value = (int)num;
+            }
+
+            List<Item> Itemlist = items.ToList();
+            Itemlist.Add(itemkais[0]);
+            Itemlist.Add(itemkais[1]);
+            Itemlist.Add(itemkais[2]);
+
+            itemkais = Itemlist.ToArray();
+
+            for (int i = 0; i < itemkais.Length; i++)
+            {
+                var Item = itemkais[i];
+                string Logtext = Item.name;
+                //if (Logtext.Contains("ー"))
+                {
+                    Debug.Log($"ID:{Item.ID}, 名前{Item.name}, 値:{Item.value}");
+                }
+            }
+
+            //掛け算は"*"(ケツの穴って覚える)
+            //int型は整数しか扱えない
+            //小数点を扱う時はfloat型を行う
+            //小数点を扱う時は末尾にfをつける
         }
 
         // ここにクラスを書く
@@ -85,6 +130,13 @@ namespace Sample
                 this.name = name;
                 this.value = value;
             }
+
+            public Item Clone()
+            {
+                Item cloneItem = new Item(ID, name, value);
+                return cloneItem;
+            }
+            //複製する時はnewを使って代入する
         }
     }
 }
