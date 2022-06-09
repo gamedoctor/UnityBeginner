@@ -3,13 +3,11 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class Goal : MonoBehaviour
+    public class Smash : MonoBehaviour
     {
-        public static bool goal;
         public void OnTriggerEnter(Collider other)
         {
-            Sample.goal = true;
-            Debug.Log("OK!OK!OK!");
+            other.attachedRigidbody.AddForce(new Vector3(20, 10), ForceMode.Impulse);
         }
     }
 }

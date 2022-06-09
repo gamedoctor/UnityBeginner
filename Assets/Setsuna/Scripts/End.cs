@@ -3,12 +3,11 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class Goal : MonoBehaviour
+    public class End : MonoBehaviour
     {
-        public static bool goal;
         public void OnTriggerEnter(Collider other)
         {
-            Sample.goal = true;
+            other.attachedRigidbody.velocity = new Vector3();
             Debug.Log("OK!OK!OK!");
         }
     }
