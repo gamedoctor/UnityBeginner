@@ -23,6 +23,7 @@ namespace Sample
             // 問.1～問.3を満たした上でキーボードVを操作した場合、
             // AddForceを1回使って青いスポットライトにボールが止まるようにせよ
             // この課題のみ、QuestionSP内にAddForceを1度だけ追加しても良い
+            // Floor7の位置はかえてよいものとする
             
             PlayAllAction();
             StartCoroutine(Reload());
