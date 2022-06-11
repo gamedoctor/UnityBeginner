@@ -35,7 +35,7 @@ namespace Sample
                 StartCoroutine(QuestionSP());
             }
 
-            // 問.1 黄色のスポットライトに止まるようにせよ
+            // 問.1 黄色のスポットライトに止まるようにせよ (うまくいってなくてだめ)
             IEnumerator Question1()
             {
                 yield return new WaitWhile(() => !target.IsSleeping());
