@@ -44,14 +44,41 @@ namespace Sample
             bool bValue5 = value1 <= 1; // ～以下
             bool bValue6 = value1 != 1; // 一致しない場合
             bool bValue7 = !bValue1; // 真偽値の反転、bool型に対して実行可能
-            
+
             // 課題.1
             // for文を使って数学の階乗「10!」を求めよ
-            
+
+            int x = 1;
+
+            for (int i = 1; i <= 10; i++)
+            {
+                x = x * i;
+            }
+            Debug.Log(x);
+
             // 課題.2
             // データが23件あり、1ページあたり5件表示するものとする。
             // その場合、8件目のデータ、13件目のデータ、21件目のデータそれぞれが何件目かを
             // 確認する関数を作成せよ
+
+            int y = 5;
+
+            for (int i = 1; i <= 23; i++)
+            {
+                y += 5;
+                if (i == 8)
+                {
+                    Debug.Log(y);
+                }
+                if (i == 13)
+                {
+                    Debug.Log(y);
+                }
+                if (i == 21) 
+                {
+                    Debug.Log(y);
+                }
+            }
             
             // 課題.3
             // for文で100ループ実行し、
